@@ -1,0 +1,23 @@
+# Secretos y entorno
+.env
+*.env
+LOCALSTACK_AUTH_TOKEN*
+
+# Estado de Terraform (puede contener datos sensibles)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+
+# Archivos de prueba generados
+prueba.txt
+
+# Evidencias locales (no exponer en el repo publico)
+evidencias/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

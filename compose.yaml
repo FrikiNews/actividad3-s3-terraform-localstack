@@ -1,0 +1,20 @@
+services:
+  localstack:
+    image: localstack/localstack:4.9
+    container_name: localstack-actividad3
+    ports:
+      # Expuesto SOLO en localhost (127.0.0.1), nunca en 0.0.0.0
+      - "127.0.0.1:4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      # El token se pasa por variable de entorno, NUNCA escrito aqui.
+      # Define LOCALSTACK_AUTH_TOKEN en tu shell o en un archivo .env (ignorado por git).
+      # Sin token: se fija la imagen 4.9 (Community, sin licencia).
+      # Una cadena vacia aqui dispara el intento de activacion y el contenedor sale con codigo 55.
+      # - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
